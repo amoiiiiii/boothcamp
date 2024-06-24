@@ -1,17 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import ReactDOM from 'react-dom';
+import Header1 from './Header1';
+import Navbar from './Navbar'; // Import komponen Navbar
+import './index.css'; // Import file CSS untuk global styling
+// import Header2 from './Header2';
+import Comment from './Comment';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+ReactDOM.render(<Header1 />, document.getElementById('header1'));
+ReactDOM.render(<Navbar />, document.getElementById('navbar'));
+// ReactDOM.render(<Header2 />, document.getElementById('header2'))
+ReactDOM.render(<Comment />, document.getElementById('root'));

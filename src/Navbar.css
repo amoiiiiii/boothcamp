@@ -1,0 +1,50 @@
+/* Navbar.css */
+.navbar {
+  display: flex;
+  justify-content: flex-end; /* Mengatur agar konten berada di sebelah kanan */
+  background-color: #333;
+  padding: 0 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Efek shadow untuk navbar */
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex; 
+  align-items: center; 
+}
+
+.navbar ul li {
+  margin-left: 20px; /* Spasi antara menu */
+}
+
+.navbar ul li a {
+  display: block;
+  color: white; /* Warna teks menu */
+  text-align: center;
+  padding: 14px 20px; /* Padding teks menu */
+  text-decoration: none;
+  transition: all 0.3s ease; /* Animasi transisi saat hover */
+  border-radius: 4px; /* Membuat sudut menu menjadi rounded */
+}
+
+.navbar ul li a:hover {
+  background-color: #ddd;
+  color: black;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Efek shadow pada hover */
+}
+
+/* Tambahkan animasi saat hover */
+/* .navbar ul li a::after {
+  content: '';
+  display: block;
+  height: 2px;
+  width: 0;
+  background: #fff;
+  transition: width 0.3s;
+} */
+
+.navbar ul li a:hover::after {
+  width: 100%;
+}
