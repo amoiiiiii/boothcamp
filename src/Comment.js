@@ -1,25 +1,70 @@
 import React, { Component } from 'react';
-import { Comments } from './CommentData'; // Mengimpor array Comments dari file CommentData
+import { Comments } from './CommentData';
 import { faker } from '@faker-js/faker';
+import './Comment.css';
 
-// Komponen CommentComponent yang menerima props name, date, text, dan avatar
-const CommentComponent = ({ name, date, text, avatar }) => (
-  <div className="comment">
-    <a className="avatar">
-      <img src={avatar || faker.image.avatar()} alt="avatar" />
-    </a>
-    <div className="content">
-      <a className="author">{name}</a>
-      <div className="metadata">
-        <span className="date">{date}</span>
+class CommentComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      likes: props.likes,
+      currentTime: new Date().toLocaleTimeString(),
+      currentDay: this.getDayName(new Date().getDay()),
+    };
+  }
+
+  componentDidMount() {
+    this.intervalID = setInterval(
+      () => this.tick(),
+      1000
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.intervalID);
+  }
+
+  tick() {
+    this.setState({
+      currentTime: new Date().toLocaleTimeString(),
+      currentDay: this.getDayName(new Date().getDay()),
+    });
+  }
+
+  getDayName(dayIndex) {
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    return days[dayIndex];
+  }
+
+  handleLike = () => {
+    this.setState((prevState) => ({
+      likes: prevState.likes + 1,
+    }));
+  };
+
+  render() {
+    const { name, text, avatar } = this.props;
+    const { likes, currentTime, currentDay } = this.state;
+
+    return (
+      <div className="comment">
+        <a className="avatar">
+          <img src={avatar || faker.image.avatar()} alt="avatar" />
+        </a>
+        <div className="content">
+          <a className="author">{name}</a>
+          <div className="metadata">
+            <span className="date">{currentDay} {currentTime}</span> <span className="like liked-text"> | Liked: {likes}</span>
+          </div>
+          <div className="text">{text}</div>
+          <div className="actions">
+            <button className="ui mini button like-button" onClick={this.handleLike}>Like</button>
+          </div>
+        </div>
       </div>
-      <div className="text">{text}</div>
-      <div className="actions">
-        <a className="reply">Reply</a>
-      </div>
-    </div>
-  </div>
-);
+    );
+  }
+}
 
 class Comment extends Component {
   render() {
