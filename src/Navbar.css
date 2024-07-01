@@ -34,16 +34,12 @@
   color: black;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Efek shadow pada hover */
 }
-
-/* Tambahkan animasi saat hover */
-/* .navbar ul li a::after {
-  content: '';
-  display: block;
-  height: 2px;
-  width: 0;
-  background: #fff;
-  transition: width 0.3s;
-} */
+.navbar {
+  /* Sesuaikan dengan gaya navbar Anda */
+  background-color: #333;
+  color: #fff;
+  padding: 5px;
+}
 
 .navbar ul li a:hover::after {
   width: 100%;
