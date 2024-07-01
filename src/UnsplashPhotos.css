@@ -1,0 +1,45 @@
+.unsplash-photos-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center; /* Memusatkan konten di tengah */
+}
+
+.search-container {
+  margin-bottom: 20px;
+  text-align: center; /* Memusatkan tombol search di tengah */
+}
+
+.search-input {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 8px;
+}
+
+.search-button {
+  padding: 8px 16px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.photo-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Mengatur agar grid berada di tengah */
+}
+
+.photo-item {
+  width: calc(33.33% - 20px); /* Ukuran foto 33.33% dari parent dengan margin 10px */
+  margin: 10px;
+}
+
+.photo-item img {
+  width: 100%; /* Gambar mengisi penuh ruang parent */
+  height: auto; /* Mengatur tinggi otomatis */
+}

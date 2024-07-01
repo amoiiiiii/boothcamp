@@ -1,85 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta name="description" content="Web site created using create-react-app" />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css">
-    <title>React App</title>
-    <style>
-      .header-container {
-        display: flex;
-        align-items: center;
-        background-color: #333;
-        padding: 10px;
-      }
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css">
+  <title>React App</title>
+  <style>
+    .header-container {
+      display: flex;
+      align-items: center;
+      background-color: #333;
+      padding: 10px;
+    }
 
-      .navbar-brand {
-        margin-right: auto;
-        color: white;
-      }
+    .navbar-brand {
+      margin-right: auto;
+      color: white;
+    }
 
-      .navbar {
-        display: flex;
-        justify-content: flex-end;
-        width: 100%;
-      }
+    .navbar {
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+    }
 
-      .navbar ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        align-items: center;
-      }
+    .navbar ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+    }
 
-      .navbar ul li {
-        margin-left: 20px;
-      }
+    .navbar ul li {
+      margin-left: 20px;
+    }
 
-      .navbar ul li a {
-        display: block;
-        color: white;
-        text-align: center;
-        padding: 14px 20px;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        border-radius: 4px;
-      }
+    .navbar ul li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 20px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border-radius: 4px;
+    }
 
-      .navbar ul li a:hover {
-        background-color: #ddd;
-        color: black;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      }
+    .navbar ul li a:hover {
+      background-color: #ddd;
+      color: black;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
 
-      /* .navbar ul li a::after {
-        content: '';
-        display: block;
-        height: 2px;
-        width: 0;
-        background: #fff;
-        transition: width 0.3s;
-      } */
+    /* .navbar ul li a::after {
+      content: '';
+      display: block;
+      height: 2px;
+      width: 0;
+      background: #fff;
+      transition: width 0.3s;
+    } */
 
-      .navbar ul li a:hover::after {
-        width: 100%;
-      }
-    </style>
+    .navbar ul li a:hover::after {
+      width: 100%;
+    }
     
-  </head>
-  <body>
-    <div class="header-container">
-      <div id="header1" class="navbar-brand"></div>
-      <div id="navbar"></div>
-    </div>
-    <div id="header2"></div>
-    <div id="root"></div>
-    <div id="unsplash-root"></div>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-  </body>
+  </style>
+</head>
+<body>
+  <div class="header-container">
+    <div id="header1" class="navbar-brand"></div>
+    <div id="navbar"></div>
+  </div>
+  <div id="header2"></div>
+  <div id="root"></div>
+  <div id="unsplash-root"></div>
+  <div id="youtube-search-root"></div>
+  <script src="/path/to/your/bundle.js"></script>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+</body>
 </html>

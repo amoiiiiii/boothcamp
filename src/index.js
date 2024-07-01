@@ -1,13 +1,25 @@
+// index.js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Header1 from './Header1';
-import Navbar from './Navbar';
-import './index.css';
-import UnsplashPhotos from './UnsplashPhotos';
-import Comment from './Comment';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { Provider } from 'react-redux';
+import rootReducer from './reducers';
+import App from './App'; // Mengimpor sebagai default
 
+// Menerapkan Redux DevTools Extension
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-ReactDOM.render(<Header1 />, document.getElementById('header1'));
-ReactDOM.render(<Navbar />, document.getElementById('navbar'));
-ReactDOM.render(<Comment />, document.getElementById('root')); // Render Comment di dalam div dengan id root
-ReactDOM.render(<UnsplashPhotos />, document.getElementById('unsplash-root')); // Render UnsplashPhotos di dalam div dengan id unsplash-root
+// Membuat Redux store dengan middleware dan Redux DevTools
+const store = createStore(
+  rootReducer,
+  composeEnhancers(
+    applyMiddleware() // Jika Anda menggunakan middleware, tambahkan di sini
+  )
+);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);

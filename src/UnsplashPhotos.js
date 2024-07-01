@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
 import unsplashApi from './unsplashApi'; // Import instance Axios dari file unsplashApi.js
+import './UnsplashPhotos.css'; // File CSS untuk styling
 
 class UnsplashPhotos extends Component {
   constructor(props) {
     super(props);
     this.state = {
       photo: null,
-      loading: true,
+      loading: false,
       error: null,
+      searchTerm: '', // Tambah state untuk menyimpan kata kunci pencarian
+      searchResults: [], // State untuk menyimpan hasil pencarian
     };
   }
 
   componentDidMount() {
-    // Memanggil API Unsplash untuk mendapatkan daftar foto
+    this.fetchRandomPhoto(); // Memuat foto acak saat komponen dimuat
+  }
+
+  fetchRandomPhoto = () => {
+    this.setState({ loading: true });
     unsplashApi.get('/photos')
       .then(response => {
         console.log('Data respons:', response.data); // Tampilkan respons API di console
@@ -27,29 +34,74 @@ class UnsplashPhotos extends Component {
       });
   }
 
+  handleSearchInputChange = (event) => {
+    this.setState({ searchTerm: event.target.value });
+  };
+
+  handleSearchSubmit = () => {
+    const { searchTerm } = this.state;
+
+    if (searchTerm.trim() === '') {
+      alert('Please enter a search term');
+      return;
+    }
+
+    this.setState({ loading: true });
+
+    // Memanggil API Unsplash dengan kata kunci pencarian
+    unsplashApi.get('/search/photos', {
+      params: { query: searchTerm },
+    })
+      .then(response => {
+        console.log('Data respons:', response.data); // Tampilkan respons API di console
+
+        // Simpan hasil pencarian ke dalam state
+        this.setState({ searchResults: response.data.results, loading: false, error: null });
+      })
+      .catch(error => {
+        console.error('Error fetching photos:', error);
+        this.setState({ error: error.message, loading: false });
+      });
+  };
+
+  handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      this.handleSearchSubmit();
+    }
+  };
+
   render() {
-    const { photo, loading, error } = this.state;
-
-    if (loading) {
-      return <div>Loading...</div>;
-    }
-
-    if (error) {
-      return <div>Error: {error}</div>;
-    }
+    const { loading, error, searchTerm, searchResults } = this.state;
 
     return (
-      <div>
-        <h1>Random Unsplash Photo</h1>
-        {photo && (
-          <div className="photo-item">
-            <img src={photo.urls.small} alt={photo.alt_description} />
-            <div className="photo-details">
-              <p>{photo.description || 'No description'}</p>
-              <p>By: {photo.user.name}</p>
+      <div className="unsplash-photos-container">
+        <h4>Unsplash Gallery</h4>
+
+        <div className="search-container">
+          <input
+            className="search-input"
+            type="text"
+            placeholder="Enter search term..."
+            value={searchTerm}
+            onChange={this.handleSearchInputChange}
+            onKeyPress={this.handleKeyPress} // Handle search on Enter key press
+          />
+          <button className="search-button" onClick={this.handleSearchSubmit}>Search</button>
+        </div>
+
+        {loading && <div>Loading...</div>}
+        {error && <div>Error: {error}</div>}
+
+        {/* Tampilkan hasil pencarian dalam bentuk grid */}
+        <div className="photo-grid">
+          {!loading && searchResults.length > 0 && searchResults.map(result => (
+            <div key={result.id} className="photo-item">
+              <img src={result.urls.small} alt={result.alt_description} />
             </div>
-          </div>
-        )}
+          ))}
+
+        
+        </div>
       </div>
     );
   }
